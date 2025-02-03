@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import SearchBar from '../components/SearchBar';
 import PerfumeCard from '../components/PerfumeCard';
@@ -74,80 +74,131 @@ const Index = () => {
     cantidad: number;
   }[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    window.onerror = (msg, url, lineNo, columnNo, error) => {
+      console.error('Global error:', { msg, url, lineNo, columnNo, error });
+      toast.error('An error occurred. Please try again.');
+      return false;
+    };
+
+    return () => {
+      window.onerror = null;
+    };
+  }, []);
 
   const filteredPerfumes = useMemo(() => {
-    const searchTerms = searchTerm.toLowerCase()
-      .split(',')
-      .map(term => term.trim())
-      .filter(Boolean)
-      .slice(0, 5); // Limit to 5 search terms
-    
-    if (searchTerms.length === 0) return perfumesData.perfumes;
-    
-    const perfumesWithMatches: PerfumeWithMatches[] = perfumesData.perfumes.map(perfume => {
-      let coincidencias = 0;
+    try {
+      const searchTerms = searchTerm.toLowerCase()
+        .split(',')
+        .map(term => term.trim())
+        .filter(Boolean)
+        .slice(0, 5);
       
-      searchTerms.forEach(term => {
-        if (
-          perfume.nombre.toLowerCase().includes(term) ||
-          perfume.notas.some(nota => nota.toLowerCase().includes(term))
-        ) {
-          coincidencias++;
-        }
+      if (searchTerms.length === 0) return perfumesData.perfumes;
+      
+      const perfumesWithMatches: PerfumeWithMatches[] = perfumesData.perfumes.map(perfume => {
+        let coincidencias = 0;
+        
+        searchTerms.forEach(term => {
+          if (
+            perfume.nombre.toLowerCase().includes(term) ||
+            perfume.notas.some(nota => nota.toLowerCase().includes(term))
+          ) {
+            coincidencias++;
+          }
+        });
+        
+        return {
+          ...perfume,
+          coincidencias
+        };
       });
       
-      return {
-        ...perfume,
-        coincidencias
-      };
-    });
-    
-    return perfumesWithMatches
-      .filter(perfume => perfume.coincidencias > 0)
-      .sort((a, b) => b.coincidencias - a.coincidencias);
+      return perfumesWithMatches
+        .filter(perfume => perfume.coincidencias > 0)
+        .sort((a, b) => b.coincidencias - a.coincidencias);
+    } catch (err) {
+      console.error('Error in filteredPerfumes:', err);
+      setError(err instanceof Error ? err : new Error('An error occurred'));
+      return [];
+    }
   }, [searchTerm]);
 
   const handleAddToCart = (perfumeName: string) => {
-    const perfume = perfumesData.perfumes.find(p => p.nombre === perfumeName);
-    if (!perfume) return;
+    try {
+      const perfume = perfumesData.perfumes.find(p => p.nombre === perfumeName);
+      if (!perfume) return;
 
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.nombre === perfumeName);
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.nombre === perfumeName
-            ? { ...item, cantidad: item.cantidad + 1 }
-            : item
-        );
-      }
-      return [...prevItems, {
-        nombre: perfume.nombre,
-        precio: perfume.precio,
-        descuento: perfume.descuento,
-        cantidad: 1
-      }];
-    });
-    
-    toast.success(`Added ${perfumeName} to cart`);
+      setCartItems(prevItems => {
+        const existingItem = prevItems.find(item => item.nombre === perfumeName);
+        if (existingItem) {
+          return prevItems.map(item =>
+            item.nombre === perfumeName
+              ? { ...item, cantidad: item.cantidad + 1 }
+              : item
+          );
+        }
+        return [...prevItems, {
+          nombre: perfume.nombre,
+          precio: perfume.precio,
+          descuento: perfume.descuento,
+          cantidad: 1
+        }];
+      });
+      
+      toast.success(`Added ${perfumeName} to cart`);
+    } catch (err) {
+      console.error('Error in handleAddToCart:', err);
+      toast.error('Failed to add item to cart');
+    }
   };
 
   const handleRemoveFromCart = (nombre: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
-    toast.success(`Removed ${nombre} from cart`);
+    try {
+      setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
+      toast.success(`Removed ${nombre} from cart`);
+    } catch (err) {
+      console.error('Error in handleRemoveFromCart:', err);
+      toast.error('Failed to remove item from cart');
+    }
   };
 
   const handleUpdateQuantity = (nombre: string, cantidad: number) => {
-    if (cantidad === 0) {
-      handleRemoveFromCart(nombre);
-      return;
+    try {
+      if (cantidad === 0) {
+        handleRemoveFromCart(nombre);
+        return;
+      }
+      
+      setCartItems(prevItems =>
+        prevItems.map(item =>
+          item.nombre === nombre ? { ...item, cantidad } : item
+        )
+      );
+    } catch (err) {
+      console.error('Error in handleUpdateQuantity:', err);
+      toast.error('Failed to update quantity');
     }
-    
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.nombre === nombre ? { ...item, cantidad } : item
-      )
-    );
   };
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600">Something went wrong</h2>
+          <p className="mt-2 text-gray-600">{error.message}</p>
+          <button 
+            className="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90"
+            onClick={() => window.location.reload()}
+          >
+            Reload Page
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-background to-secondary/20">
