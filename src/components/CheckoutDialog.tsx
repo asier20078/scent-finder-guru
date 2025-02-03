@@ -43,6 +43,7 @@ const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
             <PayPalButtons
               createOrder={(data, actions) => {
                 return actions.order.create({
+                  intent: "CAPTURE",
                   purchase_units: [
                     {
                       amount: {
