@@ -76,20 +76,32 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
+  // Enhanced error handling
   useEffect(() => {
-    window.onerror = (msg, url, lineNo, columnNo, error) => {
-      console.error('Global error:', { msg, url, lineNo, columnNo, error });
+    const handleError = (event: ErrorEvent) => {
+      console.error('Detailed error information:', {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno,
+        error: event.error
+      });
+      
+      setError(event.error || new Error(event.message));
       toast.error('An error occurred. Please try again.');
       return false;
     };
 
+    window.addEventListener('error', handleError);
+    
     return () => {
-      window.onerror = null;
+      window.removeEventListener('error', handleError);
     };
   }, []);
 
   const filteredPerfumes = useMemo(() => {
     try {
+      console.log('Filtering perfumes with search term:', searchTerm);
       const searchTerms = searchTerm.toLowerCase()
         .split(',')
         .map(term => term.trim())
@@ -116,6 +128,7 @@ const Index = () => {
         };
       });
       
+      console.log('Filtered perfumes:', perfumesWithMatches);
       return perfumesWithMatches
         .filter(perfume => perfume.coincidencias > 0)
         .sort((a, b) => b.coincidencias - a.coincidencias);
@@ -128,8 +141,12 @@ const Index = () => {
 
   const handleAddToCart = (perfumeName: string) => {
     try {
+      console.log('Adding to cart:', perfumeName);
       const perfume = perfumesData.perfumes.find(p => p.nombre === perfumeName);
-      if (!perfume) return;
+      if (!perfume) {
+        console.error('Perfume not found:', perfumeName);
+        return;
+      }
 
       setCartItems(prevItems => {
         const existingItem = prevItems.find(item => item.nombre === perfumeName);
@@ -157,6 +174,7 @@ const Index = () => {
 
   const handleRemoveFromCart = (nombre: string) => {
     try {
+      console.log('Removing from cart:', nombre);
       setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
       toast.success(`Removed ${nombre} from cart`);
     } catch (err) {
@@ -167,6 +185,7 @@ const Index = () => {
 
   const handleUpdateQuantity = (nombre: string, cantidad: number) => {
     try {
+      console.log('Updating quantity:', { nombre, cantidad });
       if (cantidad === 0) {
         handleRemoveFromCart(nombre);
         return;
