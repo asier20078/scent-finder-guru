@@ -46,6 +46,7 @@ const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
                   purchase_units: [
                     {
                       amount: {
+                        currency_code: "USD",
                         value: total.toString(),
                       },
                     },
