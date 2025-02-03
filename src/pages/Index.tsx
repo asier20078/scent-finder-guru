@@ -1,6 +1,10 @@
 import React, { useState, useMemo } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import SearchBar from '../components/SearchBar';
 import PerfumeCard from '../components/PerfumeCard';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Cart from '../components/Cart';
 import { toast } from 'sonner';
 
 const perfumesData = {
@@ -48,24 +52,81 @@ const perfumesData = {
   ]
 };
 
+interface CartItem {
+  nombre: string;
+  precio: number;
+  descuento: number;
+  cantidad: number;
+}
+
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const filteredPerfumes = useMemo(() => {
-    const term = searchTerm.toLowerCase();
+    const searchTerms = searchTerm.toLowerCase().split(',').map(term => term.trim()).filter(Boolean);
+    
+    if (searchTerms.length === 0) return perfumesData.perfumes;
+    
     return perfumesData.perfumes.filter(perfume => 
-      perfume.nombre.toLowerCase().includes(term) ||
-      perfume.notas.some(nota => nota.toLowerCase().includes(term))
+      searchTerms.some(term => 
+        perfume.nombre.toLowerCase().includes(term) ||
+        perfume.notas.some(nota => nota.toLowerCase().includes(term))
+      )
     );
   }, [searchTerm]);
 
   const handleAddToCart = (perfumeName: string) => {
+    const perfume = perfumesData.perfumes.find(p => p.nombre === perfumeName);
+    if (!perfume) return;
+
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.nombre === perfumeName);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.nombre === perfumeName
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        );
+      }
+      return [...prevItems, {
+        nombre: perfume.nombre,
+        precio: perfume.precio,
+        descuento: perfume.descuento,
+        cantidad: 1
+      }];
+    });
+    
     toast.success(`Added ${perfumeName} to cart`);
   };
 
+  const handleRemoveFromCart = (nombre: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
+    toast.success(`Removed ${nombre} from cart`);
+  };
+
+  const handleUpdateQuantity = (nombre: string, cantidad: number) => {
+    if (cantidad === 0) {
+      handleRemoveFromCart(nombre);
+      return;
+    }
+    
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.nombre === nombre ? { ...item, cantidad } : item
+      )
+    );
+  };
+
   return (
-    <div className="min-h-screen p-8 bg-gradient-to-br from-background to-secondary/20">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-background to-secondary/20">
+      <Header 
+        cartItemCount={cartItems.reduce((sum, item) => sum + item.cantidad, 0)}
+        onCartClick={() => setIsCartOpen(true)}
+      />
+      
+      <main className="flex-1 container py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Luxury Fragrances</h1>
           <p className="text-muted-foreground">
@@ -73,7 +134,10 @@ const Index = () => {
           </p>
         </div>
 
-        <SearchBar value={searchTerm} onChange={setSearchTerm} />
+        <SearchBar 
+          value={searchTerm} 
+          onChange={setSearchTerm} 
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPerfumes.map((perfume, index) => (
@@ -90,7 +154,20 @@ const Index = () => {
             <p className="text-muted-foreground">No perfumes found matching your search.</p>
           </div>
         )}
-      </div>
+      </main>
+
+      <Footer />
+
+      <AnimatePresence>
+        {isCartOpen && (
+          <Cart
+            items={cartItems}
+            onClose={() => setIsCartOpen(false)}
+            onRemoveItem={handleRemoveFromCart}
+            onUpdateQuantity={handleUpdateQuantity}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
