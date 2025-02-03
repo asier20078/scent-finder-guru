@@ -79,7 +79,8 @@ const Index = () => {
     const searchTerms = searchTerm.toLowerCase()
       .split(',')
       .map(term => term.trim())
-      .filter(Boolean);
+      .filter(Boolean)
+      .slice(0, 5); // Limit to 5 search terms
     
     if (searchTerms.length === 0) return perfumesData.perfumes;
     
