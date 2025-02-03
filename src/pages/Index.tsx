@@ -7,6 +7,19 @@ import Footer from '../components/Footer';
 import Cart from '../components/Cart';
 import { toast } from 'sonner';
 
+interface Perfume {
+  nombre: string;
+  precio: number;
+  descripcion: string;
+  url_imagen: string;
+  descuento: number;
+  notas: string[];
+}
+
+interface PerfumeWithMatches extends Perfume {
+  coincidencias: number;
+}
+
 const perfumesData = {
   "perfumes": [
     {
@@ -52,29 +65,45 @@ const perfumesData = {
   ]
 };
 
-interface CartItem {
-  nombre: string;
-  precio: number;
-  descuento: number;
-  cantidad: number;
-}
-
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<{
+    nombre: string;
+    precio: number;
+    descuento: number;
+    cantidad: number;
+  }[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const filteredPerfumes = useMemo(() => {
-    const searchTerms = searchTerm.toLowerCase().split(',').map(term => term.trim()).filter(Boolean);
+    const searchTerms = searchTerm.toLowerCase()
+      .split(',')
+      .map(term => term.trim())
+      .filter(Boolean);
     
     if (searchTerms.length === 0) return perfumesData.perfumes;
     
-    return perfumesData.perfumes.filter(perfume => 
-      searchTerms.some(term => 
-        perfume.nombre.toLowerCase().includes(term) ||
-        perfume.notas.some(nota => nota.toLowerCase().includes(term))
-      )
-    );
+    const perfumesWithMatches: PerfumeWithMatches[] = perfumesData.perfumes.map(perfume => {
+      let coincidencias = 0;
+      
+      searchTerms.forEach(term => {
+        if (
+          perfume.nombre.toLowerCase().includes(term) ||
+          perfume.notas.some(nota => nota.toLowerCase().includes(term))
+        ) {
+          coincidencias++;
+        }
+      });
+      
+      return {
+        ...perfume,
+        coincidencias
+      };
+    });
+    
+    return perfumesWithMatches
+      .filter(perfume => perfume.coincidencias > 0)
+      .sort((a, b) => b.coincidencias - a.coincidencias);
   }, [searchTerm]);
 
   const handleAddToCart = (perfumeName: string) => {
