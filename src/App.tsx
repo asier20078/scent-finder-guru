@@ -12,6 +12,8 @@ const initialPayPalOptions = {
   clientId: "test", // Replace with your PayPal client ID
   currency: "USD",
   intent: "capture",
+  components: "buttons",
+  debug: process.env.NODE_ENV === "development",
 };
 
 function App() {

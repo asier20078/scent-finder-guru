@@ -1,7 +1,7 @@
 import React from 'react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { loadStripe } from '@stripe/stripe-js';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
 
@@ -12,10 +12,36 @@ interface CheckoutDialogProps {
 }
 
 const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
+  const handlePayPalCreateOrder = (data: any, actions: any) => {
+    console.log('Creating PayPal order for amount:', total);
+    return actions.order.create({
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: total.toFixed(2),
+            breakdown: {
+              item_total: {
+                currency_code: "USD",
+                value: total.toFixed(2)
+              }
+            }
+          }
+        },
+      ],
+    });
+  };
+
   const handlePayPalApprove = (data: any, actions: any) => {
-    return actions.order.capture().then(() => {
-      toast.success('Payment successful!');
+    console.log('PayPal payment approved, capturing payment...');
+    return actions.order.capture().then((details: any) => {
+      console.log('Payment completed:', details);
+      toast.success(`Payment completed! Thank you ${details.payer.name?.given_name || 'valued customer'}!`);
       onClose();
+    }).catch((error: any) => {
+      console.error('PayPal payment error:', error);
+      toast.error('Payment failed. Please try again.');
     });
   };
 
@@ -27,7 +53,6 @@ const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
     }
 
     // Here you would typically make a call to your backend to create a payment intent
-    // For now, we'll just show a success message
     toast.success('Stripe payment integration pending backend setup');
   };
 
@@ -36,25 +61,21 @@ const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Choose Payment Method</DialogTitle>
+          <DialogDescription>
+            Select your preferred payment method to complete your purchase.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <div className="rounded-lg border p-4">
             <h3 className="font-semibold mb-2">Total to Pay: ${total.toFixed(2)}</h3>
             <PayPalButtons
-              createOrder={(data, actions) => {
-                return actions.order.create({
-                  intent: "CAPTURE",
-                  purchase_units: [
-                    {
-                      amount: {
-                        currency_code: "USD",
-                        value: total.toString(),
-                      },
-                    },
-                  ],
-                });
-              }}
+              style={{ layout: "vertical" }}
+              createOrder={handlePayPalCreateOrder}
               onApprove={handlePayPalApprove}
+              onError={(err) => {
+                console.error('PayPal error:', err);
+                toast.error('Payment failed. Please try again.');
+              }}
             />
           </div>
           <div className="rounded-lg border p-4">
