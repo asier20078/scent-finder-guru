@@ -31,12 +31,12 @@ const perfumesData = {
       "notas": ["canela", "azafran", "sándalo", "madera de agar", "rosa"]
     },
     {
-      "nombre": "Acqua di Gio",
-      "precio": 72.50,
-      "descripcion": "Una fragancia fresca y elegante inspirada en el mar Mediterráneo.",
-      "url_imagen": "https://example.com/acqua-di-gio.jpg",
+      "nombre": "9 AM Dive Perfume Unisex",
+      "precio": 37.87,
+      "descripcion": "Disfruta de la frescura y energía con 9am Dive de Afnan, un perfume unisex de la familia olfativa Aromática Acuática. Con notas de limón, menta y grosellas negras, te llenará de vitalidad desde el primer momento. Además, su combinación de manzana, incienso y sándalo le dan un toque único y duradero. Atrévete con esta nueva fragancia.Formato 100ml.",
+      "url_imagen": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSelv0tMZ_2LSfaMtbUZYHcwGxfjEJojFn_U-zo_oi7AbQkH5AoENWA8luVhMddyBLtS32e7HuINxjaTQkuU6WQ7n23Bczx",
       "descuento": 0,
-      "notas": ["romero", "bergamota", "limón", "alga marina", "madera"]
+      "notas": ["menta", "grosellas", "limón", "pimienta roja", "manzana"]
     },
     {
       "nombre": "J'adore by Dior",
