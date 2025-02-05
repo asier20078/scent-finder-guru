@@ -23,12 +23,12 @@ interface PerfumeWithMatches extends Perfume {
 const perfumesData = {
   "perfumes": [
     {
-      "nombre": "Eternity for Women",
-      "precio": 65.99,
-      "descripcion": "Un clásico atemporal con notas de flor de loto, almizcle y sándalo.",
-      "url_imagen": "https://example.com/eternity-for-women.jpg",
-      "descuento": 10,
-      "notas": ["flor de loto", "almizcle", "sándalo", "madera de cachemira", "rosa"]
+      "nombre": "24 Carat Pure Gold Perfume Mujer",
+      "precio": 32.67,
+      "descripcion": "24 quilates de oro puro, este perfume de Lattafa Perfumes captura la esencia de la feminidad y la masculinidad. Con notas cálidas de madera de oud, azafrán y canela, junto con sándalo y rosa, esta fragancia oriental y vainilla promete una experiencia sensorial lujosa y duradera. Formato 100ml.",
+      "url_imagen": "https://d2j6dbq0eux0bg.cloudfront.net/images/30951154/2911675516.jpg",
+      "descuento": 0,
+      "notas": ["canela", "azafran", "sándalo", "madera de agar", "rosa"]
     },
     {
       "nombre": "Acqua di Gio",
