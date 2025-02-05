@@ -47,12 +47,12 @@ const perfumesData = {
       "notas": ["limon", "mandarina", "cardamomo", "pimienta rosa", "lavanda"]
     },
     {
-      "nombre": "Chanel No. 5",
-      "precio": 120.00,
-      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
-      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "nombre": "Musaman White Intense - Perfume Mujer",
+      "precio": 58.62,
+      "descripcion": "Descubre la exquisita esencia de Musamam White Intense: un perfume de intensidad moderada que combina notas aromáticas de alta calidad para crear una fragancia única y cautivadora. Con toques de frescura, elegancia y seducción, es ideal para el día o para ocasiones especiales. Presentación en un elegante frasco con atomizador preciso. Formato 100 ml",
+      "url_imagen": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTmkOidyJRoE0mcqcDx1nROOpLMJI1Shdy-K7SEo4H2M1DnX2qiMub7xCyNZvredTg2FvoCpE_7nYv6xlHib976sQvtabGU",
       "descuento": 0,
-      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+      "notas": ["bergamota", "especias", "naranja", "coco", "benjui"]
     },
     {
       "nombre": "Chanel No. 5",
