@@ -39,19 +39,230 @@ const perfumesData = {
       "notas": ["menta", "grosellas", "limón", "pimienta roja", "manzana"]
     },
     {
-      "nombre": "J'adore by Dior",
-      "precio": 89.99,
-      "descripcion": "Una fragancia floral sofisticada con toques de frutas exóticas.",
-      "url_imagen": "https://example.com/j-adore-dior.jpg",
-      "descuento": 15,
-      "notas": ["damasco", "pétalos de rosa", "ylang-ylang", "jazmín", "vainilla"]
+      "nombre": "9 AM Perfume Mujer",
+      "precio": 37.87,
+      "descripcion": "Descubre la fragancia 9 AM Perfume Mujer, una combinación de cítricos, especias y notas florales que te acompañarán durante todo el día. Con su mezcla de limón, mandarina, lavanda y rosa, sentirás una frescura irresistible y una suave elegancia. ¡Despierta tus sentidos con 9 AM!. Formato 100ml.",
+      "url_imagen": "https://cdn.notinoimg.com/detail_main_mq/afnan/6290171002345_01-o/afnan-9-am-eau-de-parfum-para-mujer___210929.jpg",
+      "descuento": 0,
+      "notas": ["limon", "mandarina", "cardamomo", "pimienta rosa", "lavanda"]
     },
     {
       "nombre": "Chanel No. 5",
       "precio": 120.00,
       "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
       "url_imagen": "https://example.com/chanel-no5.jpg",
-      "descuento": 5,
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },
+    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
+      "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
+    },    {
+      "nombre": "Chanel No. 5",
+      "precio": 120.00,
+      "descripcion": "El icónico perfume femenino con una combinación única de flores y almizcle.",
+      "url_imagen": "https://example.com/chanel-no5.jpg",
+      "descuento": 0,
       "notas": ["rosa", "jazmín", "violeta", "almizcle", "vainilla"]
     },
     {
