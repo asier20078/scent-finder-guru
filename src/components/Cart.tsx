@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
 import CheckoutDialog from './CheckoutDialog';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js"; // Importa PayPalScriptProvider
 
 interface CartItem {
   nombre: string;
@@ -20,14 +21,19 @@ interface CartProps {
 
 const Cart = ({ items, onClose, onRemoveItem, onUpdateQuantity }: CartProps) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  
+
   const total = items.reduce((sum, item) => {
     const precio = item.precio * (1 - item.descuento / 100);
     return sum + precio * item.cantidad;
   }, 0);
 
   return (
-    <>
+    <PayPalScriptProvider  // Envuelve el contenido con PayPalScriptProvider
+      options={{
+        "client-id": "AWMQEIHqtJytRONIp9bQkM2uyIyOI3zUTLdOnMXCPixhZk11I2AlS4UsGkGlGsFgsXsH037tngjR6Cut",
+        currency: "EUR", // Cambia a la moneda correcta si es diferente
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, x: '100%' }}
         animate={{ opacity: 1, x: 0 }}
@@ -86,8 +92,8 @@ const Cart = ({ items, onClose, onRemoveItem, onUpdateQuantity }: CartProps) => 
                 <span className="font-semibold">Total:</span>
                 <span className="font-semibold">€{total.toFixed(2)}</span>
               </div>
-              <Button 
-                className="w-full" 
+              <Button
+                className="w-full"
                 size="lg"
                 onClick={() => setIsCheckoutOpen(true)}
               >
@@ -97,13 +103,13 @@ const Cart = ({ items, onClose, onRemoveItem, onUpdateQuantity }: CartProps) => 
           </>
         )}
       </motion.div>
-      
+
       <CheckoutDialog
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
         total={total}
       />
-    </>
+    </PayPalScriptProvider>
   );
 };
 
