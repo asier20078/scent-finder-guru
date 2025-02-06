@@ -18,6 +18,7 @@ interface PerfumeCardProps {
 
 const PerfumeCard = ({ perfume, onAddToCart }: PerfumeCardProps) => {
   const finalPrice = perfume.precio * (1 - perfume.descuento / 100);
+  const notas = perfume.notas || [];
 
   return (
     <motion.div
@@ -49,7 +50,7 @@ const PerfumeCard = ({ perfume, onAddToCart }: PerfumeCardProps) => {
       </p>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        {perfume.notas.map((nota, index) => (
+        {notas.map((nota, index) => (
           <span key={index} className="note-tag">
             {nota}
           </span>
