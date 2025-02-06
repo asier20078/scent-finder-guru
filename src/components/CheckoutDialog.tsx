@@ -67,7 +67,7 @@ const CheckoutDialog = ({ isOpen, onClose, total }: CheckoutDialogProps) => {
         </DialogHeader>
         <div className="space-y-4">
           <div className="rounded-lg border p-4">
-            <h3 className="font-semibold mb-2">Total to Pay: ${total.toFixed(2)}</h3>
+            <h3 className="font-semibold mb-2">Total to Pay: €{total.toFixed(2)}</h3>
             <PayPalButtons
               style={{ layout: "vertical" }}
               createOrder={handlePayPalCreateOrder}

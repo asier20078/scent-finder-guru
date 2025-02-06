@@ -51,7 +51,7 @@ const Cart = ({ items, onClose, onRemoveItem, onUpdateQuantity }: CartProps) => 
                   <div className="flex-1">
                     <h3 className="font-semibold">{item.nombre}</h3>
                     <p className="text-sm text-muted-foreground">
-                      ${(item.precio * (1 - item.descuento / 100)).toFixed(2)} each
+                      €{(item.precio * (1 - item.descuento / 100)).toFixed(2)} each
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -84,7 +84,7 @@ const Cart = ({ items, onClose, onRemoveItem, onUpdateQuantity }: CartProps) => 
             <div className="border-t pt-4">
               <div className="flex justify-between mb-4">
                 <span className="font-semibold">Total:</span>
-                <span className="font-semibold">${total.toFixed(2)}</span>
+                <span className="font-semibold">€{total.toFixed(2)}</span>
               </div>
               <Button 
                 className="w-full" 

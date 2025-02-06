@@ -61,11 +61,11 @@ const PerfumeCard = ({ perfume, onAddToCart }: PerfumeCardProps) => {
         <div className="flex flex-col">
           {perfume.descuento > 0 && (
             <span className="text-sm text-muted-foreground line-through">
-              ${perfume.precio.toFixed(2)}
+              €{perfume.precio.toFixed(2)}
             </span>
           )}
           <span className="text-xl font-semibold text-primary">
-            ${finalPrice.toFixed(2)}
+            €{finalPrice.toFixed(2)}
           </span>
         </div>
         
