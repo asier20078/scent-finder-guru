@@ -13,20 +13,20 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
-            <p className="text-muted-foreground">Email: info@scentfinder.com</p>
-            <p className="text-muted-foreground">Phone: (555) 123-4567</p>
+            <p className="text-muted-foreground">Phone: (+34) 654-18-33-26</p>
+            <p className="text-muted-foreground">Web: lasalhajasdetoledoymas.com</p>
           </div>
           <div>
             <h3 className="font-semibold mb-4">Follow Us</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground">Instagram</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground">Twitter</a>
-              <a href="#" className="text-muted-foreground hover:text-foreground">Facebook</a>
+              <a href="https://www.instagram.com/lasalhajasdetoledoymas/" className="text-muted-foreground hover:text-foreground">Instagram</a>
+              <a href="https://www.tiktok.com/@anaiarbiol" className="text-muted-foreground hover:text-foreground">TikTok</a>
+              <a href="https://www.facebook.com/A4jbeauty" className="text-muted-foreground hover:text-foreground">Facebook</a>
             </div>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-muted-foreground">
-          <p>&copy; 2024 Scent Finder. All rights reserved.</p>
+          <p>&copy; 2025 lasalhajasdetoledoymas. All rights reserved.</p>
         </div>
       </div>
     </footer>
