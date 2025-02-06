@@ -14,6 +14,7 @@ interface Perfume {
   url_imagen: string;
   descuento: number;
   notas: string[];
+  url: string;
 }
 
 interface PerfumeWithMatches extends Perfume {
@@ -294,27 +295,9 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  // Enhanced error handling
-  useEffect(() => {
-    const handleError = (event: ErrorEvent) => {
-      console.error('Detailed error information:', {
-        message: event.message,
-        filename: event.filename,
-        lineno: event.lineno,
-        colno: event.colno,
-        error: event.error
-      });
-      
-      setError(event.error || new Error(event.message));
-      toast.error('An error occurred. Please try again.');
-      return false;
-    };
-
-    window.addEventListener('error', handleError);
-    
-    return () => {
-      window.removeEventListener('error', handleError);
-    };
+  const flattenedPerfumes = useMemo(() => {
+    // Flatten the nested array structure
+    return perfumesData.perfumes[0] as Perfume[];
   }, []);
 
   const filteredPerfumes = useMemo(() => {
@@ -326,9 +309,9 @@ const Index = () => {
         .filter(Boolean)
         .slice(0, 5);
       
-      if (searchTerms.length === 0) return perfumesData.perfumes;
+      if (searchTerms.length === 0) return flattenedPerfumes;
       
-      const perfumesWithMatches: PerfumeWithMatches[] = perfumesData.perfumes.map(perfume => {
+      const perfumesWithMatches: PerfumeWithMatches[] = flattenedPerfumes.map(perfume => {
         let coincidencias = 0;
         
         searchTerms.forEach(term => {
@@ -355,12 +338,12 @@ const Index = () => {
       setError(err instanceof Error ? err : new Error('An error occurred'));
       return [];
     }
-  }, [searchTerm]);
+  }, [searchTerm, flattenedPerfumes]);
 
   const handleAddToCart = (perfumeName: string) => {
     try {
       console.log('Adding to cart:', perfumeName);
-      const perfume = perfumesData.perfumes.find(p => p.nombre === perfumeName);
+      const perfume = flattenedPerfumes.find(p => p.nombre === perfumeName);
       if (!perfume) {
         console.error('Perfume not found:', perfumeName);
         return;
