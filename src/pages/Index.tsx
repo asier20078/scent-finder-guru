@@ -223,7 +223,7 @@ const perfumesData = {
           "descripcion": "Aceite intimo perfumado, unisex, envase de roll-on de 3ml. De la casa AYAT. SIN ALCOHOL . Aceite original extraído naturalmente. Fórmula de perfume a aceite con extractos naturales  que suaviza y refresca tu piel durante todo el día para una experiencia aromática duradera, para una sensación agradable durante todo el día. Notas de Salida: Limón, salvia, rosas, y notas florales. Notas Corazón: Praliné, canela, bálsamo, de tolú, cardamomo negro y nuez moscada. Notas Fondo: Palo de rosa de Brasil, pachulí, ámbar negro, almizcles y madera de agar.",
           "url_imagen": "http://lasalhajasdetoledoymas.com/cdn/shop/files/Disenosintitulo-2025-02-01T230939.245.png?v=1738450211",
           "descuento": 0,
-          "notas": [],
+          "notas": [Rosas],
           "url": "https://lasalhajasdetoledoymas.com/products/aceite-intimo-sahara"
       },
       {
