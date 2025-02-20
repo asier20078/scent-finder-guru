@@ -21,10 +21,11 @@ interface PerfumeWithMatches extends Perfume {
   coincidencias: number;
 }
 
-const perfumesData = {
-  "perfumes": [
-    [
-       "nombre": "Toro - Perfume Hombre",
+const perfumesData = 
+    {
+    "perfumes":[
+        [{
+          "nombre": "Toro - Perfume Hombre",
           "precio": 25.29,
           "descripcion": "Disfruta de la esencia del lujo con Maison Alhambra Toro Pour Homme Eau De Parfum Spray. Diseñado para hombres, su cautivador aroma con notas de especias cítricas y maderas irradia confianza y sofisticación . Fabricado con exquisitez y atención al detalle, este perfume atemporal es ideal para el hombre seguro de sí mismo . Formato 100 ml",
           "url_imagen": "http://lasalhajasdetoledoymas.com/cdn/shop/files/LASALHAJASDETOLEDOYMAS.COM_68.png?v=1738338712",
